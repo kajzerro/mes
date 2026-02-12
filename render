@@ -1,0 +1,138 @@
+
+_renderMarginPeriods() {
+    return html`
+        <div class="row margin-periods-section">
+            <!-- Okres 1 -->
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-4 form-label">
+                        <p><strong>${this.localize('ProductParameters.marginPeriod1') || 'Okres 1'}</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 form-label">
+                        <p>${this.localize('ProductParameters.marginPeriodFrom') || 'Od'}</p>
+                    </div>
+                    <div class="col-3">
+                        <cms2-product-date-picker
+                            at-id="marginPeriod1From"
+                            .modelValue="${this.modelValue.marginPeriod1From}"
+                            modelKey="marginPeriod1From"
+                            @model-value-changed=${this.updateValue}
+                            .disabled=${true}
+                            placeholder="${this.localize('ProductParameters.datePlaceholder')}"
+                        ></cms2-product-date-picker>
+                    </div>
+                    <div class="col-1 form-label">
+                        <p>${this.localize('ProductParameters.marginPeriodTo') || 'Do'}</p>
+                    </div>
+                    <div class="col-3">
+                        <cms2-product-date-picker
+                            at-id="marginPeriod1To"
+                            .modelValue="${this.modelValue.marginPeriod1To}"
+                            modelKey="marginPeriod1To"
+                            @model-value-changed=${this.updateValue}
+                            .disabled=${this.isDisabled({ sectionName: 'priceTermsSection', propName: 'marginPeriod1To' })}
+                            placeholder="${this.localize('ProductParameters.datePlaceholder')}"
+                        ></cms2-product-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 form-label">
+                        <p>${this.localize('ProductParameters.margin') || 'Marża'} 1</p>
+                    </div>
+                    <div class="col-8">
+                        <div class="input-container margin">
+                            <x2-input-amount
+                                at-id="margin1"
+                                .modelValue=${checkTypeAndParseNumeric(this.modelValue.margin1)}
+                                label=""
+                                class="short-input"
+                                modelKey="margin1"
+                                currency="PLN"
+                                .formatOptions=${{
+                                    minimumFractionDigits: FOUR_DECIMALS_PLACES_NUMBER,
+                                    maximumFractionDigits: FOUR_DECIMALS_PLACES_NUMBER,
+                                }}
+                                .errorValidators="${[
+                                    defaultPercentValidator(),
+                                    requiredField(this.modelValue.productType, 'margin1'),
+                                    negativeValueValidator(this.modelValue.margin1),
+                                ]}"
+                                .disabled=${this.isDisabled({ sectionName: 'priceTermsSection', propName: 'margin1' })}
+                                @model-value-changed=${this.updateValue}
+                            ></x2-input-amount>
+                            <p class="percent">%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Okres 2 -->
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-4 form-label">
+                        <p><strong>${this.localize('ProductParameters.marginPeriod2') || 'Okres 2'}</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 form-label">
+                        <p>${this.localize('ProductParameters.marginPeriodFrom') || 'Od'}</p>
+                    </div>
+                    <div class="col-3">
+                        <cms2-product-date-picker
+                            at-id="marginPeriod2From"
+                            .modelValue="${this.modelValue.marginPeriod2From}"
+                            modelKey="marginPeriod2From"
+                            @model-value-changed=${this.updateValue}
+                            .disabled=${true}
+                            placeholder="${this.localize('ProductParameters.datePlaceholder')}"
+                        ></cms2-product-date-picker>
+                    </div>
+                    <div class="col-1 form-label">
+                        <p>${this.localize('ProductParameters.marginPeriodTo') || 'Do'}</p>
+                    </div>
+                    <div class="col-3">
+                        <cms2-product-date-picker
+                            at-id="marginPeriod2To"
+                            .modelValue="${this.modelValue.marginPeriod2To}"
+                            modelKey="marginPeriod2To"
+                            @model-value-changed=${this.updateValue}
+                            .disabled=${true}
+                            placeholder="${this.localize('ProductParameters.datePlaceholder')}"
+                        ></cms2-product-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 form-label">
+                        <p>${this.localize('ProductParameters.margin') || 'Marża'} 2</p>
+                    </div>
+                    <div class="col-8">
+                        <div class="input-container margin">
+                            <x2-input-amount
+                                at-id="margin2"
+                                .modelValue=${checkTypeAndParseNumeric(this.modelValue.margin2)}
+                                label=""
+                                class="short-input"
+                                modelKey="margin2"
+                                currency="PLN"
+                                .formatOptions=${{
+                                    minimumFractionDigits: FOUR_DECIMALS_PLACES_NUMBER,
+                                    maximumFractionDigits: FOUR_DECIMALS_PLACES_NUMBER,
+                                }}
+                                .errorValidators="${[
+                                    defaultPercentValidator(),
+                                    requiredField(this.modelValue.productType, 'margin2'),
+                                    negativeValueValidator(this.modelValue.margin2),
+                                ]}"
+                                .disabled=${this.isDisabled({ sectionName: 'priceTermsSection', propName: 'margin2' })}
+                                @model-value-changed=${this.updateValue}
+                            ></x2-input-amount>
+                            <p class="percent">%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
